@@ -1,0 +1,20 @@
+# Arquivos específicos
+node_modules
+npm-debug.log
+
+# Arquivos de build
+Dockerfile*
+docker-compose*
+
+# Arquivos de desenvolvimento
+.vscode
+.idea
+*.log
+
+# Arquivos de sistema
+.git
+.gitignore
+.DS_Store
+
+# Arquivos de configuração sensíveis
+.env

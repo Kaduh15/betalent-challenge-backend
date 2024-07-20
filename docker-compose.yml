@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "${DB_PORT}:3306" 
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-12345678}
+      MYSQL_DATABASE: ${DB_DATABASE:-betalent}
+    networks:
+      - net
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "${PORT:-3333}:3333"
+    command: sh -c "npm run migrate && npm run dev "
+    depends_on:
+      - db
+    networks:
+      - net
+    environment:
+      TZ: ${TZ:-UTC}
+      PORT: ${PORT:-3333}
+      HOST: ${HOST:-0.0.0.0}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      APP_KEY: ${APP_KEY:-Ufh6FQtRnewQLjHqkKBBq8FdNMJDfyE1}
+      NODE_ENV: ${NODE_ENV:-development}
+      DB_HOST: ${DB_HOST:-db}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-12345678}
+      DB_DATABASE: ${DB_DATABASE:-betalent}
+
+networks:
+  net:
+    driver: bridge
