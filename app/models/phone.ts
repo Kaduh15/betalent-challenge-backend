@@ -1,6 +1,5 @@
 import Client from '#models/client'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import { CherryPick, CherryPickFields, LucidRow, ModelObject } from '@adonisjs/lucid/types/model'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import { DateTime } from 'luxon'
 
