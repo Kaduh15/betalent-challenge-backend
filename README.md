@@ -24,8 +24,8 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/usuario/repo.git
-   cd repo
+   git clone git@github.com:Kaduh15/betalent-challenge-backend.git
+   cd betalent-challenge-backend
    ```
 
 2. **Configurar variáveis de ambiente:**
@@ -74,6 +74,10 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
    A API estará disponível em `http://localhost:3333/api`.
 
 ## 📚 Rotas da API
+
+Na raiz do projeto tem um aqruivo `Betalent.json` que contém todas as rotas configuradas para usar
+no [Bruno](https://www.usebruno.com/) um cliente de API onde pode testar todas as rotas.
+Mas pode usar qualquer outro cliente http que preferir.
 
 ### 🔐 Usuários
 
