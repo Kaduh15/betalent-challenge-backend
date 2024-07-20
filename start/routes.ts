@@ -8,7 +8,11 @@
 */
 
 import router from '@adonisjs/core/services/router'
-import { middleware } from '#start/kernel'
+
+import { authRouter } from '#routes/auth_router'
+import { clientRouter } from '#routes/client_router'
+import { productRouter } from '#routes/product_router'
+import { saleRouter } from '#routes/sale_router'
 
 router.get('/', async () => {
   return {
@@ -16,34 +20,10 @@ router.get('/', async () => {
   }
 })
 
-router.post('/signup', '#controllers/auth_controller.signup')
-router.post('/login', '#controllers/auth_controller.login')
+authRouter(router)
 
-router
-  .group(() => {
-    router.get('/', '#controllers/clients_controller.index')
-    router.post('/', '#controllers/clients_controller.store')
-    router.get('/:id', '#controllers/clients_controller.show')
-    router.put('/:id', '#controllers/clients_controller.update')
-    router.delete('/:id', '#controllers/clients_controller.destroy')
-  })
-  .prefix('/clients')
-  .use(middleware.auth())
+clientRouter(router)
 
-router
-  .group(() => {
-    router.get('/', '#controllers/products_controller.index')
-    router.post('/', '#controllers/products_controller.store')
-    router.get('/:id', '#controllers/products_controller.show')
-    router.put('/:id', '#controllers/products_controller.update')
-    router.delete('/:id', '#controllers/products_controller.destroy')
-  })
-  .prefix('/products')
-  .use(middleware.auth())
+productRouter(router)
 
-router
-  .group(() => {
-    router.post('/', '#controllers/sales_controller.create')
-  })
-  .prefix('/sales')
-  .use(middleware.auth())
+saleRouter(router)
