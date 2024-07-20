@@ -7,9 +7,10 @@ export default class ProductsController {
    * Display a list of resource
    */
   async index({}: HttpContext) {
-    const queryResult = await Product.query().preload('sale').orderBy('name', 'asc')
+    const queryResult = await Product.query().orderBy('name', 'asc')
     const clients = queryResult.map((c) => {
       const client = c.serialize({
+        fields: ['id', 'name', 'description', 'price'],
         relations: {
           sale: {
             fields: ['id', 'quantity', 'unitPrice', 'totalPrice'],
