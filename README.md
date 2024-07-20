@@ -1,6 +1,3 @@
-Aqui está o README atualizado para incluir as instruções de execução com Docker:
-
-```markdown
 # BeTalent Backend API
 
 Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeTalent. A API permite o gerenciamento de usuários, clientes, produtos e vendas, com autenticação JWT para usuários logados.
