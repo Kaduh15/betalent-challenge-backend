@@ -80,5 +80,15 @@ export default class ProductsController {
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, response }: HttpContext) {
+    const product = await Product.find(params.id)
+
+    if (!product) {
+      return response.notFound({ message: 'Product not found' })
+    }
+
+    await product.delete()
+
+    return response.noContent()
+  }
 }
