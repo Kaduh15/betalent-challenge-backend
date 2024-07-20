@@ -67,7 +67,37 @@ export default class ClientsController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ params, response }: HttpContext) {
+    const { id } = params
+
+    if (!id) {
+      response.badRequest({ message: 'Invalid id' })
+    }
+
+    const queryResult = await Client.query()
+      .preload('address')
+      .preload('phone')
+      .preload('sale')
+      .where('id', id)
+      .first()
+
+    if (!queryResult) {
+      return response.notFound({ message: 'Client not found' })
+    }
+
+    const client = queryResult.serialize({
+      relations: {
+        address: {
+          fields: ['id', 'street', 'number', 'city', 'state', 'zipCode'],
+        },
+        phone: {
+          fields: ['id', 'number'],
+        },
+      },
+    })
+
+    return response.ok(client)
+  }
 
   /**
    * Edit individual record
