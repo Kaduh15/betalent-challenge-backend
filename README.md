@@ -1,8 +1,8 @@
-# BeTalent Backend API
+# 📦 BeTalent Backend API
 
 Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeTalent. A API permite o gerenciamento de usuários, clientes, produtos e vendas, com autenticação JWT para usuários logados.
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 - Node.js
 - AdonisJS
@@ -10,7 +10,7 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
 - JWT para autenticação
 - Docker
 
-## Requisitos
+## 📋 Requisitos
 
 - Node.js
 - npm (ou yarn)
@@ -18,13 +18,13 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
 - Docker
 - Docker Compose
 
-## Instalação e Configuração
+## 🚀 Instalação e Configuração
 
 ### Passos para Rodar o Projeto
 
 1. **Clone o repositório:**
    ```bash
-   git clone git@github.com:Kaduh15/betalent-challenge-backend.git
+   git clone https://github.com/usuario/repo.git
    cd repo
    ```
 
@@ -42,7 +42,7 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
    DB_DATABASE=nome_do_banco_de_dados
    ```
 
-### Rodar com Docker
+### 🐳 Rodar com Docker
 
 1. **Execute o Docker Compose:**
    ```bash
@@ -50,9 +50,9 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
    ```
 
 2. **Acesse a API:**
-   A API estará disponível em `http://localhost:3333/`.
+   A API estará disponível em `http://localhost:3333/api`.
 
-### Rodar Localmente
+### 💻 Rodar Localmente
 
 1. **Instale as dependências:**
    ```bash
@@ -72,9 +72,9 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
 4. **Acesse a API:**
    A API estará disponível em `http://localhost:3333/api`.
 
-## Rotas da API
+## 📚 Rotas da API
 
-### Usuários
+### 🔐 Usuários
 
 - **Cadastro de usuário:**
   - **POST** `/signup`
@@ -98,7 +98,7 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
     ```
   - Response: `200 OK`, retorna token JWT
 
-### Clientes
+### 👥 Clientes
 
 - **Listar todos os clientes:**
   - **GET** `/clientes`
@@ -156,7 +156,7 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
   - **DELETE** `/clientes/{id}`
   - Response: `204 No Content`
 
-### Produtos
+### 🛒 Produtos
 
 - **Listar todos os produtos:**
   - **GET** `/produtos`
@@ -194,7 +194,7 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
   - **DELETE** `/produtos/{id}`
   - Response: `204 No Content`
 
-### Vendas
+### 💸 Vendas
 
 - **Registrar uma venda:**
   - **POST** `/vendas`
@@ -211,15 +211,15 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
     ```
   - Response: `201 Created`
 
-## Documentação da API
+## 📑 Documentação da API
 
-A documentação completa da API pode ser acessada via Swagger. Para visualizar a documentação, acesse `/docs` após iniciar o servidor.
+A documentação completa da API pode ser acessada via Swagger [aqui](https://editor.swagger.io/?_gl=1*1p63kmo*_gcl_au*MTg1ODM1NjE3Ny4xNzIxNDExNzM5&_ga=2.55165419.1965308613.1721411735-1338233024.1721411735).
 
-## Contribuição
+## 🤝 Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests para melhorias e correções.
 
-## Licença
+## 📝 Licença
 
 Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 ```
