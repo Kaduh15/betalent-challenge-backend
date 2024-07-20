@@ -7,8 +7,8 @@ export default class Address extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
-  declare client_id: number
+  @column({ columnName: 'client_id' })
+  declare clientId: number
 
   @column()
   declare street: string
@@ -22,8 +22,8 @@ export default class Address extends BaseModel {
   @column()
   declare state: string
 
-  @column()
-  declare zip_code: string
+  @column({ columnName: 'zip_code' })
+  declare zipCode: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -31,6 +31,8 @@ export default class Address extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  @belongsTo(() => Client)
+  @belongsTo(() => Client, {
+    foreignKey: 'client_id',
+  })
   declare client: BelongsTo<typeof Client>
 }

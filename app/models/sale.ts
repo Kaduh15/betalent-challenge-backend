@@ -8,20 +8,20 @@ export default class Sale extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  @column()
-  declare client_id: number
+  @column({ columnName: 'client_id' })
+  declare clientId: number
 
-  @column()
-  declare product_id: number
+  @column({ columnName: 'product_id' })
+  declare productId: number
 
   @column()
   declare quantity: number
 
-  @column()
-  declare unit_price: number
+  @column({ columnName: 'unit_price' })
+  declare unitPrice: number
 
-  @column()
-  declare total_price: number
+  @column({ columnName: 'total_price' })
+  declare totalPrice: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
