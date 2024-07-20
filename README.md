@@ -50,7 +50,7 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
    ```
 
 2. **Acesse a API:**
-   A API estará disponível em `http://localhost:3333/api`.
+   A API estará disponível em `http://localhost:3333/`.
 
 ### 💻 Rodar Localmente
 
