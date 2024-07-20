@@ -93,8 +93,14 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
   - Request Body:
     ```json
     {
-      "email": "usuario@example.com",
-      "password": "senha"
+      "type": "bearer",
+      "name": null,
+      "token": "token-I2ckpSd20xZlg0empFUHVpTXk4X001cTQyMjQ1OTM2OTk",
+      "abilities": [
+        "*"
+      ],
+      "lastUsedAt": null,
+      "expiresAt": null
     }
     ```
   - Response: `200 OK`, retorna token JWT
