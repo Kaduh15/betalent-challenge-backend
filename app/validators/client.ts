@@ -33,7 +33,7 @@ export const createClientValidator = vine.compile(
  */
 export const updateClientValidator = vine.compile(
   vine.object({
-    name: vine.string().minLength(3),
+    name: vine.string().minLength(3).optional(),
     cpf: vine
       .string()
       .regex(
@@ -41,6 +41,19 @@ export const updateClientValidator = vine.compile(
       )
       .parse((cpf) => {
         return (cpf as string).replace(/[^\d]/g, '')
-      }),
+      })
+      .optional(),
+    phone: vine
+      .string()
+      .regex(/^(?:\+55\s?)?(\(?\d{2}\)?\s?)?9\d{4}-?\d{4}$/)
+      .optional(),
+
+    address: vine.object({
+      street: vine.string().minLength(3).optional(),
+      number: vine.string().minLength(1).optional(),
+      city: vine.string().minLength(3).optional(),
+      state: vine.string().minLength(2).optional(),
+      zip_code: vine.string().minLength(8).optional(),
+    }),
   })
 )

@@ -100,17 +100,72 @@ export default class ClientsController {
   }
 
   /**
-   * Edit individual record
-   */
-  async edit({ params }: HttpContext) {}
-
-  /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request, response }: HttpContext) {
+    const { id } = params
+
+    if (!id) {
+      return response.badRequest({ message: 'Invalid id' })
+    }
+
+    const data = request.all()
+    const { cpf, name, address, phone } = await createClientValidator.validate(data)
+
+    const client = await Client.findOrFail(id)
+    client.merge({ cpf, name })
+
+    if (address) {
+      await client.related('address').updateOrCreate({}, address)
+    }
+
+    if (phone) {
+      await client.related('phone').updateOrCreate({}, { number: phone })
+    }
+    await client.save()
+
+    const queryResult = await Client.query()
+      .preload('address')
+      .preload('phone')
+      .where('id', id)
+      .first()
+
+    if (!queryResult) {
+      return response.notFound({ message: 'Client not found' })
+    }
+
+    const clientUp = queryResult.serialize({
+      relations: {
+        address: {
+          fields: ['id', 'street', 'number', 'city', 'state', 'zipCode'],
+        },
+        phone: {
+          fields: ['id', 'number'],
+        },
+      },
+    })
+
+    return response.ok(clientUp)
+  }
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, response }: HttpContext) {
+    const { id } = params
+
+    if (!id) {
+      return response.badRequest({ message: 'Invalid id' })
+    }
+
+    const client = await Client.findBy('id', id)
+
+    if (!client) {
+      return response.notFound({ message: 'Client not found' })
+    }
+
+    await client.delete()
+
+    return response.noContent()
+  }
 }
