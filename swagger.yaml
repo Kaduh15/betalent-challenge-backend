@@ -1,0 +1,376 @@
+openapi: 3.0.0
+info:
+  title: BeTalent Backend API
+  description: API para gerenciamento de usuários, clientes, produtos e vendas.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3333/
+    description: Servidor local
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+  responses:
+    UnauthorizedError:
+      description: Token de acesso está ausente ou é inválido
+
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        cpf:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        phones:
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+      required:
+        - name
+        - cpf
+
+    Address:
+      type: object
+      properties:
+        id:
+          type: number
+        street:
+          type: string
+        number:
+          type: number
+        city:
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+      required:
+        - street
+        - city
+        - state
+        - zip
+
+    Phone:
+      type: object
+      properties:
+        id:
+          type: number
+        client_id:
+          type: integer
+        number:
+          type: string
+      required:
+        - number
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+      required:
+        - name
+        - price
+
+    Sale:
+      type: object
+      properties:
+        client:
+          type: object
+          $ref: '#/components/schemas/Client'
+        id:
+          type: integer
+        product_id:
+          type: object
+          $ref: '#/components/schemas/Product'
+        quantity:
+          type: integer
+        unit_price:
+          type: number
+        total_price:
+          type: number
+      required:
+        - client_id
+        - product_id
+        - quantity
+        - unit_price
+        - total_price
+        - date_time
+
+security:
+  - bearerAuth: []
+
+paths:
+  /signup:
+    post:
+      summary: Cadastrar um novo usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+        '400':
+          description: Erro na requisição
+
+  /login:
+    post:
+      summary: Login de usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Login bem-sucedido
+        '401':
+          description: Credenciais inválidas
+
+  /clients:
+    get:
+      summary: Listar todos os clientes
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+    post:
+      summary: Adicionar um novo cliente
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '201':
+          description: Cliente criado com sucesso
+        '400':
+          description: Erro na requisição
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /clients/{id}:
+    get:
+      summary: Detalhar um cliente e suas vendas
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalhes do cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '404':
+          description: Cliente não encontrado
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+    put:
+      summary: Editar um cliente
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          description: Cliente atualizado com sucesso
+        '400':
+          description: Erro na requisição
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+    delete:
+      summary: Excluir um cliente e suas vendas
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Cliente excluído com sucesso
+        '404':
+          description: Cliente não encontrado
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /products:
+    get:
+      summary: Listar todos os produtos
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de produtos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+    post:
+      summary: Adicionar um novo produto
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Produto criado com sucesso
+        '400':
+          description: Erro na requisição
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /products/{id}:
+    get:
+      summary: Detalhar um produto
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalhes do produto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Produto não encontrado
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+    put:
+      summary: Editar um produto
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Produto atualizado com sucesso
+        '400':
+          description: Erro na requisição
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+    delete:
+      summary: Soft delete de um produto
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Produto excluído com sucesso
+        '404':
+          description: Produto não encontrado
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /sales:
+    post:
+      summary: Registrar uma venda
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sale'
+      responses:
+        '201':
+          description: Venda registrada com sucesso
+        '400':
+          description: Erro na requisição
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
