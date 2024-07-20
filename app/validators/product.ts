@@ -19,4 +19,14 @@ export const createProductValidator = vine.compile(
  * Validator to validate the payload when updating
  * an existing product.
  */
-export const updateProductValidator = vine.compile(vine.object({}))
+export const updateProductValidator = vine.compile(
+  vine.object({
+    name: vine
+      .string()
+      .minLength(3)
+      .parse((name) => (name as string).toLowerCase())
+      .optional(),
+    price: vine.number().min(1).optional(),
+    description: vine.string().minLength(3).optional(),
+  })
+)

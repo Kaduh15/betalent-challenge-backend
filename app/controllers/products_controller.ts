@@ -1,5 +1,5 @@
 import Product from '#models/product'
-import { createProductValidator } from '#validators/product'
+import { createProductValidator, updateProductValidator } from '#validators/product'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ProductsController {
@@ -58,7 +58,24 @@ export default class ProductsController {
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request, response }: HttpContext) {
+    const data = request.all()
+    const { name, description, price } = await updateProductValidator.validate(data)
+
+    const product = await Product.find(params.id)
+
+    if (!product) {
+      return response.notFound({ message: 'Product not found' })
+    }
+
+    product.name = name || product.name
+    product.description = description || product.description
+    product.price = price || product.price
+
+    await product.save()
+
+    return product
+  }
 
   /**
    * Delete record
