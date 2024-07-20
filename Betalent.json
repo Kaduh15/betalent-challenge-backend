@@ -1,0 +1,439 @@
+{
+  "name": "Betalent",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "home",
+      "seq": 1,
+      "request": {
+        "url": "http://localhost:3333",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "Auth",
+      "items": [
+        {
+          "type": "http",
+          "name": "signup",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:3333/signup",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"email\": \"test@g.com\",\n  \"password\": \"12345678\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "login",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:3333/login",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"email\": \"test@g.com\",\n  \"password\": \"12345678\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Clients",
+      "root": {
+        "request": {
+          "headers": []
+        },
+        "meta": {}
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Get All",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:3333/clients",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:3333/clients",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\": \"joão\",\n  \"cpf\": \"123.456.789-13\",\n  \"phone\": \"87996252178\",\n  \"address\": {\n    \"street\": \"dfsdfsf\",\n    \"state\": \"orlando\",\n    \"number\": \"01\",\n    \"city\": \"New York\",\n    \"zip_code\": \"12345678\"\n  }\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get One",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:3333/clients/1?month=7&year=2025",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "month",
+                "value": "7",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "year",
+                "value": "2025",
+                "type": "query",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "update",
+          "seq": 4,
+          "request": {
+            "url": "http://localhost:3333/clients/1",
+            "method": "PUT",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\": \"joão\",\n  \"cpf\": \"123.456.789-06\",\n  \"phone\": \"87996252178\",\n  \"address\": {\n    \"street\": \"dfsdfsf\",\n    \"state\": \"orlando\",\n    \"number\": \"02\",\n    \"city\": \"New York\",\n    \"zip_code\": \"12345678\"\n  }\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "oat_MQ.VlJKUVNGN3BqbWk2T2hUUkt4VmM4SmVaX0JaVnFNWERuRl81VUJKYzE3NzY4ODYwNzg"
+              }
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete One",
+          "seq": 5,
+          "request": {
+            "url": "http://localhost:3333/clients/1",
+            "method": "DELETE",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "oat_MQ.VlJKUVNGN3BqbWk2T2hUUkt4VmM4SmVaX0JaVnFNWERuRl81VUJKYzE3NzY4ODYwNzg"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Products",
+      "items": [
+        {
+          "type": "http",
+          "name": "Delete One",
+          "seq": 5,
+          "request": {
+            "url": "http://localhost:3333/products/2",
+            "method": "DELETE",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "oat_MQ.VlJKUVNGN3BqbWk2T2hUUkt4VmM4SmVaX0JaVnFNWERuRl81VUJKYzE3NzY4ODYwNzg"
+              }
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get One",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:3333/products/3",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:3333/products",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\": \"abacate\",\n  \"price\": 250,\n  \"description\": \"1 duzia\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get All",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:3333/products",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "update",
+          "seq": 4,
+          "request": {
+            "url": "http://localhost:3333/products/1",
+            "method": "PUT",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"name\": \"Leite2\",\n  \"price\": 100,\n  \"description\": \"1 Litro\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "oat_MQ.VlJKUVNGN3BqbWk2T2hUUkt4VmM4SmVaX0JaVnFNWERuRl81VUJKYzE3NzY4ODYwNzg"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Sales",
+      "items": [
+        {
+          "type": "http",
+          "name": "Create Sale",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:3333/sales?clientId=1&productId=1&quantity=5",
+            "method": "POST",
+            "headers": [],
+            "params": [
+              {
+                "name": "clientId",
+                "value": "1",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "productId",
+                "value": "1",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "quantity",
+                "value": "5",
+                "type": "query",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "root": {
+    "request": {
+      "auth": {
+        "mode": "bearer",
+        "bearer": {
+          "token": "oat_MQ.cUxCMWt4VktoUDY2YUh4OU16WVBOZXBkWkVyMmdLZG12emF4NU9qLTMwNDg5NjgzNTM"
+        }
+      },
+      "headers": [],
+      "script": {},
+      "vars": {},
+      "tests": ""
+    },
+    "meta": {
+      "name": "Betalent"
+    }
+  },
+  "brunoConfig": {
+    "version": "1",
+    "name": "Betalent",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "presets": {
+      "requestType": "http",
+      "requestUrl": "http://localhost:3333"
+    }
+  }
+}

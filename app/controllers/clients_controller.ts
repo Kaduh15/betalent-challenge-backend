@@ -11,6 +11,7 @@ export default class ClientsController {
     const queryResult = await Client.query().preload('address').preload('phone').orderBy('id')
     const clients = queryResult.map((c) => {
       const client = c.serialize({
+        fields: ['id', 'cpf', 'name'],
         relations: {
           address: {
             fields: ['id', 'street', 'number', 'city', 'state', 'zipCode'],
@@ -67,8 +68,9 @@ export default class ClientsController {
   /**
    * Show individual record
    */
-  async show({ params, response }: HttpContext) {
+  async show({ params, response, request }: HttpContext) {
     const { id } = params
+    const { month, year } = request.qs()
 
     if (!id) {
       response.badRequest({ message: 'Invalid id' })
@@ -77,7 +79,17 @@ export default class ClientsController {
     const queryResult = await Client.query()
       .preload('address')
       .preload('phone')
-      .preload('sale')
+      .preload('sale', (query) => {
+        if (month && year) {
+          query.whereRaw('MONTH(created_at) = ? AND YEAR(created_at) = ?', [month, year])
+        } else if (month) {
+          query.whereRaw('MONTH(created_at) = ?', [month])
+        } else if (year) {
+          query.whereRaw('YEAR(created_at) = ?', [year])
+        }
+
+        query.orderBy('created_at', 'desc')
+      })
       .where('id', id)
       .first()
 
