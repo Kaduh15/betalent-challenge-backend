@@ -45,7 +45,15 @@ export default class ProductsController {
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ params, response }: HttpContext) {
+    const product = await Product.find(params.id)
+
+    if (!product) {
+      return response.notFound({ message: 'Product not found' })
+    }
+
+    return product
+  }
 
   /**
    * Handle form submission for the edit action
