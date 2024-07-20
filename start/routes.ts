@@ -14,3 +14,6 @@ router.get('/', async () => {
     hello: 'world',
   }
 })
+
+router.post('/signup', '#controllers/auth_controller.signup')
+router.post('/login', '#controllers/auth_controller.login')
