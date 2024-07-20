@@ -31,6 +31,7 @@ Este projeto é uma API RESTful desenvolvida como parte do teste técnico da BeT
 2. **Configurar variáveis de ambiente:**
    Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
    ```env
+   TZ=UTC
    HOST=db
    PORT=3333
    NODE_ENV=development
