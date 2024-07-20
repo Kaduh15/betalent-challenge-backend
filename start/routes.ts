@@ -40,3 +40,10 @@ router
   })
   .prefix('/products')
   .use(middleware.auth())
+
+router
+  .group(() => {
+    router.post('/', '#controllers/sales_controller.create')
+  })
+  .prefix('/sales')
+  .use(middleware.auth())

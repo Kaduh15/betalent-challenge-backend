@@ -17,6 +17,10 @@ export default class extends BaseSchema {
 
       table.integer('product_id').unsigned().references('id').inTable('products')
 
+      table.integer('quantity').notNullable().defaultTo(1)
+      table.integer('unit_price').notNullable()
+      table.integer('total_price').notNullable()
+
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
