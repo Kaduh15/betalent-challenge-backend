@@ -132,11 +132,7 @@ Mas pode usar qualquer outro cliente http que preferir.
         "state": "Estado Exemplo",
         "zip": "12345-678"
       },
-      "phones": [
-        {
-          "number": "123456789"
-        }
-      ]
+      "phone": "11123456789"
     }
     ```
   - Response: `201 Created`
