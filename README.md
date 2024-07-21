@@ -83,6 +83,10 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Cadastro de usuário:**
   - **POST** `/signup`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Request Body:
     ```json
     {
@@ -94,6 +98,10 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Login de usuário:**
   - **POST** `/login`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Request Body:
     ```json
     {
@@ -113,14 +121,26 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Listar todos os clientes:**
   - **GET** `/clientes`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Response: `200 OK`, retorna lista de clientes
 
 - **Detalhar um cliente e suas vendas:**
   - **GET** `/clientes/{id}`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Response: `200 OK`, retorna detalhes do cliente e suas vendas
 
 - **Adicionar um cliente:**
   - **POST** `/clientes`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Request Body:
     ```json
     {
@@ -139,6 +159,10 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Editar um cliente:**
   - **PUT** `/clientes/{id}`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Request Body:
     ```json
     {
@@ -161,16 +185,28 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Excluir um cliente e suas vendas:**
   - **DELETE** `/clientes/{id}`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Response: `204 No Content`
 
 ### 🛒 Produtos
 
 - **Listar todos os produtos:**
   - **GET** `/produtos`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Response: `200 OK`, retorna lista de produtos
 
 - **Detalhar um produto:**
   - **GET** `/produtos/{id}`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Response: `200 OK`, retorna detalhes do produto
 
 - **Criar um produto:**
@@ -187,6 +223,10 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Editar um produto:**
   - **PUT** `/produtos/{id}`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Request Body:
     ```json
     {
@@ -199,12 +239,20 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Soft delete de um produto:**
   - **DELETE** `/produtos/{id}`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Response: `204 No Content`
 
 ### 💸 Vendas
 
 - **Registrar uma venda:**
   - **POST** `/vendas`
+  - Headers:
+    ```
+    Authorization: Bearer <token>
+    ```
   - Request Body:
     ```json
     {
