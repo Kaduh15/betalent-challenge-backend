@@ -83,10 +83,6 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Cadastro de usuário:**
   - **POST** `/signup`
-  - Headers:
-    ```
-    Authorization: Bearer <token>
-    ```
   - Request Body:
     ```json
     {
@@ -98,10 +94,6 @@ Mas pode usar qualquer outro cliente http que preferir.
 
 - **Login de usuário:**
   - **POST** `/login`
-  - Headers:
-    ```
-    Authorization: Bearer <token>
-    ```
   - Request Body:
     ```json
     {
