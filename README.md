@@ -225,14 +225,3 @@ Mas pode usar qualquer outro cliente http que preferir.
 ## 📑 Documentação da API
 
 A documentação completa da API pode ser acessada via Swagger [aqui](https://editor.swagger.io/?_gl=1*1p63kmo*_gcl_au*MTg1ODM1NjE3Ny4xNzIxNDExNzM5&_ga=2.55165419.1965308613.1721411735-1338233024.1721411735).
-
-## 🤝 Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests para melhorias e correções.
-
-## 📝 Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-```
-
-Certifique-se de ajustar as URLs e os detalhes específicos conforme a implementação do seu projeto. Boa sorte! Se precisar de mais alguma coisa, estou à disposição.
