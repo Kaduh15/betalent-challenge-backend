@@ -180,6 +180,7 @@ Mas pode usar qualquer outro cliente http que preferir.
 ### 🛒 Produtos
 
 - **Listar todos os produtos:**
+``Os valores dos produtos estão em centavos para facilitar nos cálculos``
   - **GET** `/produtos`
   - Headers:
     ```
@@ -188,6 +189,7 @@ Mas pode usar qualquer outro cliente http que preferir.
   - Response: `200 OK`, retorna lista de produtos
 
 - **Detalhar um produto:**
+``Os valores dos produtos estão em centavos para facilitar nos cálculos``
   - **GET** `/produtos/{id}`
   - Headers:
     ```
@@ -196,13 +198,14 @@ Mas pode usar qualquer outro cliente http que preferir.
   - Response: `200 OK`, retorna detalhes do produto
 
 - **Criar um produto:**
+``Os valores dos produtos estão em centavos para facilitar nos cálculos``
   - **POST** `/produtos`
   - Request Body:
     ```json
     {
       "name": "Nome do Produto",
       "description": "Descrição do Produto",
-      "price": 100.00
+      "price": 100
     }
     ```
   - Response: `201 Created`
@@ -234,6 +237,7 @@ Mas pode usar qualquer outro cliente http que preferir.
 ### 💸 Vendas
 
 - **Registrar uma venda:**
+``Os valores dos produtos estão em centavos para facilitar nos cálculos``
   - **POST** `/vendas`
   - Headers:
     ```
@@ -245,9 +249,8 @@ Mas pode usar qualquer outro cliente http que preferir.
       "client_id": 1,
       "product_id": 1,
       "quantity": 2,
-      "unit_price": 100.00,
-      "total_price": 200.00,
-      "date_time": "2024-07-19T10:00:00Z"
+      "unit_price": 100,
+      "total_price": 200,
     }
     ```
   - Response: `201 Created`
