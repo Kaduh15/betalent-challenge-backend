@@ -97,14 +97,8 @@ Mas pode usar qualquer outro cliente http que preferir.
   - Request Body:
     ```json
     {
-      "type": "bearer",
-      "name": null,
-      "token": "token-I2ckpSd20xZlg0empFUHVpTXk4X001cTQyMjQ1OTM2OTk",
-      "abilities": [
-        "*"
-      ],
-      "lastUsedAt": null,
-      "expiresAt": null
+      "email": "usuario@example.com",
+      "password": "senha"
     }
     ```
   - Response: `200 OK`, retorna token JWT
